@@ -32,6 +32,7 @@ import hudson.model.JobPropertyDescriptor;
 import hudson.util.ListBoxModel;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import jenkins.advancedqueue.JobGroup;
@@ -41,6 +42,7 @@ import jenkins.advancedqueue.PriorityConfiguration;
 import jenkins.advancedqueue.PriorityConfigurationCallback;
 import jenkins.advancedqueue.PrioritySorterConfiguration;
 import jenkins.advancedqueue.priority.PriorityStrategy;
+import jenkins.model.Jenkins;
 import net.sf.json.JSONObject;
 
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -135,5 +137,13 @@ public class PriorityJobProperty extends JobProperty<Job<?, ?>> {
 			}
 			return false;
 		}
+
+		public boolean canEdit() {
+            PrioritySorterConfiguration configuration = PrioritySorterConfiguration.get();
+            if (configuration.getOnlyAdminsMayEditPriorityConfiguration()) {
+                return Jenkins.get().getACL().hasPermission(Jenkins.ADMINISTER);
+            }
+            return true;
+        }
 	}
 }
