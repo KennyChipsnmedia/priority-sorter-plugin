@@ -19,7 +19,7 @@
     <artifactId>PrioritySorter</artifactId>
 	<version>4.1.0.0</version>
 	<packaging>hpi</packaging>
-	<name>Jenkins Priority Sorter Plugin</name>
+	<name>[CNM]Jenkins Priority Sorter Plugin</name>
 	<description>This plugin allows for the build queue to be sorted based on configurable Sorting and Priority Assigment Strategies.</description>
 	<url>https://github.com/jenkinsci/priority-sorter-plugin</url>
 
